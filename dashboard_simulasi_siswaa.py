@@ -23,35 +23,22 @@ st.title("📊 Dashboard Analisis Hasil Simulasi Siswa")
 st.write("Analisis otomatis untuk data 50 siswa dan 20 soal")
 
 # ==========================================================
-# UPLOAD FILE
+# INPUT DATA
 # ==========================================================
-
 uploaded_file = st.file_uploader("Upload file Excel", type=["xlsx"])
 
 if uploaded_file is None:
     st.warning("Silakan upload file Excel terlebih dahulu.")
     st.stop()
 
-df = pd.read_excel(uploaded_file)
-
 # ==========================================================
 # MEMBACA DATA
 # ==========================================================
-file_path = "/content/data_simulasi_50_siswa_20_soal.xlsx" # Use the provided file path directly
 try:
-    df = pd.read_excel(file_path) # Use file_path instead of uploaded_file
-    indikator = df.apply(pd.to_numeric, errors="coerce")
-except Exception as e:
-    st.error(f"File tidak dapat dibaca. Pastikan format Excel benar. Error: {e}. Menggunakan file: {file_path}")
-    st.stop()
-
-try:
-    df = pd.read_excel(uploaded_file) # Assuming uploaded_file from previous cells
-    # Memastikan semua data adalah numerik
+    df = pd.read_excel(uploaded_file)
     indikator = df.apply(pd.to_numeric, errors="coerce")
 except Exception as e:
     st.error(f"Gagal membaca file: {e}")
-    st.info("Pastikan file Excel yang diunggah valid.")
     st.stop()
 
 # ==========================================================
