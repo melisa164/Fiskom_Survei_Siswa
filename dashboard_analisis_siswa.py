@@ -23,12 +23,23 @@ st.title("🎓 Dashboard Evaluasi Akademik Siswa")
 st.markdown("Analisis performa siswa berbasis data simulasi")
 
 # ==========================================================
-# LOAD DATA
+# INPUT DATA
 # ==========================================================
-file_path = "/content/data_simulasi_50_siswa_20_soal.xlsx"
+uploaded_file = st.file_uploader("Upload file Excel", type=["xlsx"])
 
-df = pd.read_excel(file_path)
-indikator = df.apply(pd.to_numeric, errors="coerce")
+if uploaded_file is None:
+    st.warning("Silakan upload file Excel terlebih dahulu.")
+    st.stop()
+
+# ==========================================================
+# MEMBACA DATA
+# ==========================================================
+try:
+    df = pd.read_excel(uploaded_file)
+    indikator = df.apply(pd.to_numeric, errors="coerce")
+except Exception as e:
+    st.error(f"Gagal membaca file: {e}")
+    st.stop()
 
 # ==========================================================
 # SIDEBAR FILTER
