@@ -25,7 +25,10 @@ st.write("Analisis otomatis untuk data 50 siswa dan 20 soal")
 # ==========================================================
 # UPLOAD FILE
 # ==========================================================
-uploaded_file = st.file_uploader("Upload file Excel (.xlsx)", type=["/content/data_simulasi_50_siswa_20_soal.xlsx"])
+uploaded_file = st.file_uploader(
+    "Upload file Excel (.xlsx)",
+    type=None
+)
 
 if uploaded_file is None:
     st.info("Silakan upload file Excel terlebih dahulu.")
