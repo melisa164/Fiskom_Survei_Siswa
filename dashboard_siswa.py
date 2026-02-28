@@ -30,17 +30,25 @@ if uploaded_file is None:
     st.info("Silakan upload data terlebih dahulu untuk memulai analisis.")
     st.stop()
 
+
+# ==========================================================
+# INPUT DATA
+# ==========================================================
+uploaded_file = st.file_uploader("Upload file Excel", type=["xlsx"])
+
+if uploaded_file is None:
+    st.warning("Silakan upload file Excel terlebih dahulu.")
+    st.stop()
+    
 # ==========================================================
 # MEMBACA DATA
 # ==========================================================
-# The `uploaded_file` variable is None because the Streamlit file uploader
-# is not active or a file has not been uploaded.
-# To proceed in a Colab environment without a live Streamlit app,
-# we can directly specify the file path. It is assumed the file is
-# located at "/content/data_simulasi_50_siswa_20_soal.xlsx"
-# as indicated by the 'type' parameter in st.file_uploader in the previous cell.
-file_path = "/content/data_simulasi_50_siswa_20_soal.xlsx"
-df = pd.read_excel(file_path)
+try:
+    df = pd.read_excel(uploaded_file)
+    indikator = df.apply(pd.to_numeric, errors="coerce")
+except Exception as e:
+    st.error(f"Gagal membaca file: {e}")
+    st.stop()
 
 # memastikan numerik
 indikator = df.apply(pd.to_numeric, errors="coerce")
