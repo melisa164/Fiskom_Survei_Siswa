@@ -25,10 +25,12 @@ st.write("Analisis otomatis untuk data 50 siswa dan 20 soal")
 # ==========================================================
 # UPLOAD FILE
 # ==========================================================
-uploaded_file = st.file_uploader("Upload file Excel (.xlsx)", type=["data_simulasi_50_siswa_20_soal.xlsx"])
+uploaded_file = st.file_uploader("Upload file Excel", type=["xlsx"])
 
-if uploaded_file is None:
-    st.info("Silakan upload file Excel terlebih dahulu.")
+if uploaded_file is not None:
+    df = pd.read_excel(uploaded_file)
+else:
+    st.warning("Silakan upload file Excel terlebih dahulu.")
     st.stop()
 
 # ==========================================================
