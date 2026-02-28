@@ -22,14 +22,6 @@ st.set_page_config(page_title="Dashboard Analisis Siswa", layout="wide")
 st.title("📊 Dashboard Analisis Hasil Simulasi Siswa")
 st.markdown("Aplikasi ini digunakan untuk menganalisis hasil simulasi 50 siswa pada 20 indikator penilaian menggunakan pendekatan statistik dan data mining.")
 
-# ==========================================================
-# INPUT DATA
-# ==========================================================
-uploaded_file = st.file_uploader("Upload file Excel data siswa", type=["/content/data_simulasi_50_siswa_20_soal.xlsx"])
-
-if uploaded_file is None:
-    st.info("Silakan upload data terlebih dahulu untuk memulai analisis.")
-    st.stop()
 
 
 # ==========================================================
